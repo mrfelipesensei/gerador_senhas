@@ -1,0 +1,38 @@
+Importação de módulos
+import random - biblioteca que gera valores aleatórios
+
+import string - biblioteca - contém conjuntos de caracteres úteis - letras, números e símbolos
+
+def gerar_senha(tamanho=12, incluir_numeros=True, incluir_maiusculas=True, incluir_simbolos=True):
+
+define a função gerar_senha - gera uma senha aleatória
+
+possui 4 parâmetros
+tamanho=12 - define o tamanho padrão como 12
+incluir_numeros - indica se números serão incluídos
+incluir_maiusculas - indica se letras maiúsculas serão incluídas
+incluir_simbolos - indica se símbolos especiais serão incluídos
+
+caracteres = string.ascii_lowercase  # Começa com letras minúsculas
+
+a variável caracteres inicialmente contém apenas letras minúsculas
+
+if incluir_maiusculas:
+    caracteres += string.ascii_uppercase
+
+se incluir_maiusculas for True - adiciona maiúsculas
+and so on...
+
+senha = ''.join(random.choice(caracteres) for _ in range(tamanho))
+
+cria uma senha com tamanho caracteres (12)
+
+random.choice(caracteres) 
+escolhe aleatoriamente um caractere da string caracteres
+
+a compreensão de lista for _ in range(tamanho) executa esse processo tamanho vezes
+
+''.join(...) une os caracteres gerados em uma única string
+
+return senha - a função retorna a senha gerada
+
