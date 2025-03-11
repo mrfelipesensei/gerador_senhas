@@ -36,3 +36,24 @@ a compreensão de lista for _ in range(tamanho) executa esse processo tamanho ve
 
 return senha - a função retorna a senha gerada
 
+def main():
+
+define a função principal main, que será executada quando o script for rodado
+
+incluir_numeros = input("Incluir números? (s/n): ").strip().lower() == 's'
+-pergunta ao usuário se deseja incluir números
+-strip() remove espaços extras antes e depois da resposta
+-lower() coverte a resposta para minúsculas
+== 's' retorna True se digitar "s" e False caso contrário
+
+senha = gerar_senha(tamanho, incluir_numeros, incluir_maiusculas, incluir_simbolos)
+
+chama a função gerar_senha passando os parâmetros definidos pelo usuário
+
+if __name__ == "__main__":
+    main()
+
+if __name__ == "__main__": 
+-verifica se o script está sendo executado diretamente
+- e não importado como módulo em outro código
+- se for executado diretamente, chama a função main()
