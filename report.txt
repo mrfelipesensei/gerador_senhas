@@ -46,9 +46,12 @@ incluir_numeros = input("Incluir números? (s/n): ").strip().lower() == 's'
 -lower() coverte a resposta para minúsculas
 == 's' retorna True se digitar "s" e False caso contrário
 
-senha = gerar_senha(tamanho, incluir_numeros, incluir_maiusculas, incluir_simbolos)
+senhas = [gerar_senha(tamanho, incluir_numeros, incluir_maiusculas, incluir_simbolos) for _ in range(quantidade)]
 
-chama a função gerar_senha passando os parâmetros definidos pelo usuário
+-cria uma lista de senhas usando uma compreensão de lista
+-chama a função gerar_senha passando os parâmetros definidos pelo usuário
+- o número de senhas geradas é determinado por quantidade
+
 
 if __name__ == "__main__":
     main()
@@ -57,3 +60,35 @@ if __name__ == "__main__":
 -verifica se o script está sendo executado diretamente
 - e não importado como módulo em outro código
 - se for executado diretamente, chama a função main()
+
+import os
+-o módulo os fornece funções para interarir com o sistema operacional
+-usado para determinaro o diretório atual e criar o caminho do arquivo onde as senhas serão salvas
+
+def salvar_senhas(senhas)
+-recebe uma lista de senhas e as salva em um arquivo de texto
+
+diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+
+os.path.abspath(__file__)
+-obtém o caminho absoluto do próprio script
+
+os.path.dirname(...)
+-extrai apenas o diretório do script
+-garante que o arquivo será salvo no mesmo diretório onde o script está sendo executado
+
+caminho_arquivo = os.path.join(diretorio_atual, "senhas.txt")
+
+os.path.join(...)
+-cria um caminho compatível com o sistema operacional
+
+with open(caminho_arquivo, "w") as arquivo:
+-abre o arquivo senhas.txt no modo escrita("w")
+-se o arquivo já existir, será sobrescrito
+
+for senha in senhas:
+    arquivo.write(senha + "\n")
+
+-itera sobre a lista senhas
+-escreve cada senha em uma nova linha do arquivo
+

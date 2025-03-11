@@ -20,13 +20,32 @@ print(gerar_senha(16)) #Gera uma senha de 16 caracteres'''
 
 def main():
     tamanho = int(input("Digite o tamanho da senha: "))
+    quantidade = int(input("Quantas senhas deseja gerar? "))
     incluir_numeros = input("Incluir números? (s/n): ").strip().lower() == 's'
     incluir_maiusculas = input("Incluir letras maiúsculas? (s/n): ").strip().lower() == 's'
     incluir_simbolos = input("Incluir símbolos? (s/n): ").strip().lower() == 's'
 
-    senha = gerar_senha(tamanho, incluir_numeros, incluir_maiusculas, incluir_simbolos)
-    print(f"\n🔑 Sua senha gerada: {senha}")
+    senhas = [gerar_senha(tamanho, incluir_numeros, incluir_maiusculas, incluir_simbolos) for _ in range(quantidade)]
+    
+    print("\n Senhas geradas:")
+    for senha in senhas:
+        print(senha)
+    
+    return senhas
+
+import os
+
+def salvar_senhas(senhas):
+    dir_atual = os.path.dirname(os.path.abspath(__file__))
+    caminho_arquivo = os.path.join(dir_atual, "senhas.txt")
+
+    with open(caminho_arquivo, "w") as arquivo:
+        for senha in senhas:
+            arquivo.write(senha + "\n")
+    
+    print("\n Senhas salvas em 'senhas.txt'")
 
 
 if __name__ == "__main__":
-    main()
+    senhas = main()
+    salvar_senhas(senhas)
