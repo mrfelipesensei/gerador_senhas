@@ -55,6 +55,37 @@ def gerar_senha_interface():
         messagebox.showerror("Erro", "Digite valores numéricos válidos!")
 
 
+def iniciar_interface():
+    global entry_tamanho, entry_quantidade, var_numeros, var_maiusculas, var_simbolos, resultado
+
+    root = tk.Tk()
+    root.title("Gerador de Senhas")
+
+    tk.Label(root, text="Tamanho da Senha: ").grid(row=0, column=0)
+    entry_tamanho = tk.Entry(root)
+    entry_tamanho.grid(row=0, column=1)
+
+    tk.Label(root, text="Quantidade de Senhas: ").grid(row=1, column=0)
+    entry_quantidade = tk.Entry(root)
+    entry_quantidade.grid(row=1, column=1)
+
+    var_numeros = tk.BooleanVar()
+    tk.Checkbutton(root, text="Incluir Números",variable=var_numeros).grid(row=2,column=0,columnspan=2)
+
+    var_maiusculas = tk.BooleanVar()
+    tk.Checkbutton(root, text="Incluir Maiúsculas", variable=var_maiusculas).grid(row=3, column=0, columnspan=2)
+
+    var_simbolos = tk.BooleanVar()
+    tk.Checkbutton(root, text="Incluir Símbolos",variable=var_simbolos).grid(row=4, column=0, columnspan=2)
+
+    tk.Button(root, text="Gerar Senha", command=gerar_senha_interface).grid(row=5, column=0, columnspan=2)
+
+    resultado = tk.Text(root, height=10, width=40)
+    resultado.grid(row=6, column=0, columnspan=2)
+
+    root.mainloop()
+
+
 
 import os
 
